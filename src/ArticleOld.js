@@ -1,28 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import Body from './Body'
+import toggleOpen from './mixins/toggleOpen'
 
 const Article = React.createClass({
-    getInitialState() {
-        return {
-            isOpen: false
-        }
-    },
+    mixins: [toggleOpen],
 
     render() {
         const {article : { title, text }} = this.props
         return (
             <div>
-                <h3 onClick = {this.handleClick}>{title}</h3>
+                <h3 onClick = {this.toggleOpen}>{title}</h3>
                 <Body text = {text} isOpen = {this.state.isOpen}/>
             </div>
         )
     },
 
-    handleClick(ev) {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
 })
 
 export default Article
