@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import Body from './Body'
 
 class Article extends Component {
     state = {
@@ -7,11 +8,10 @@ class Article extends Component {
 
     render() {
         const {article : { title, text }} = this.props
-        const body = this.state.isOpen ? <section>{text}</section> : null;
         return (
             <div>
                 <h3 onClick = {this.handleClick}>{title}</h3>
-                {body}
+                <Body text = {text} isOpen = {this.state.isOpen}/>
             </div>
         )
     }
