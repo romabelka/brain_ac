@@ -14,4 +14,4 @@ class ArticleList extends Component {
     }
 }
 
-export default ArticleLista
+export default ArticleList
