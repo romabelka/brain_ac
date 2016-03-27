@@ -1,6 +1,18 @@
+import AppDispatcher from '../dispatcher'
+
 class ArticleStore {
     constructor(initialState) {
         this.__items = initialState
+
+        AppDispatcher.register((action) => {
+            const { type, data } = action
+
+            switch (type) {
+                case 'DELETE_ARTICLE':
+                    this.__delete(data.id)
+                    break;
+            }
+        })
     }
 
     getAll() {
