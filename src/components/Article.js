@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Body from './Body'
-import toggleOpen from './HOC/toggleOpen'
+import toggleOpen from './../HOC/toggleOpen'
 
 class Article extends Component {
 

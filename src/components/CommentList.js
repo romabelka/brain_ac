@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import toggleOpen from './HOC/toggleOpen'
+import toggleOpen from './../HOC/toggleOpen'
 
 class CommentList extends Component {
     static propTypes = {

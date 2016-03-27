@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Body from './Body'
-import toggleOpen from './mixins/toggleOpen'
+import toggleOpen from './../mixins/toggleOpen'
 
 const Article = React.createClass({
     mixins: [toggleOpen],
