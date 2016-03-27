@@ -7,15 +7,16 @@ export function asyncAC(loadAll, type) {
             type: type + START
         })
 
-        loadAll()
-            .done(response => AppDispatcher.dispatch({
-                type: type + SUCCESS,
-                response
-            }))
-            .fail(error => AppDispatcher.dispatch({
-                type: type + FAIL,
-                error
-            }))
-
+        setTimeout(() => {
+            loadAll()
+                .done(response => AppDispatcher.dispatch({
+                    type: type + SUCCESS,
+                    response
+                }))
+                .fail(error => AppDispatcher.dispatch({
+                    type: type + FAIL,
+                    error
+                }))
+        }, 1000)
     }
 }

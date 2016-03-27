@@ -6,7 +6,8 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            articles: articleStore.getOrLoadAll()
+            articles: articleStore.getOrLoadAll(),
+            loading: articleStore.loading
         }
     }
 
@@ -20,13 +21,16 @@ class App extends Component {
 
     articlesChanged = () => {
         this.setState({
-            articles: articleStore.getOrLoadAll()
+            articles: articleStore.getOrLoadAll(),
+            loading: articleStore.loading
         })
     }
 
     render() {
+        const { loading, articles } = this.state
+        if (loading) return <h1>Loading...</h1>
         return (
-            <ArticleList articles = {this.state.articles}/>
+            <ArticleList articles = {articles}/>
         )
     }
 }
