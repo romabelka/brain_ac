@@ -3,10 +3,6 @@ import ArticleList from './ArticleList'
 import { articleStore } from '../stores'
 
 class App extends Component {
-    static propTypes = {
-
-    };
-
     constructor() {
         super()
         this.state = {

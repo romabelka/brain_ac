@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Body from './Body'
 import toggleOpen from './../HOC/toggleOpen'
+import { deleteArticle } from '../AC/articles'
 
 class Article extends Component {
 
@@ -16,11 +17,16 @@ class Article extends Component {
         const style = isSelected ? {color: 'red'} : null
         return (
             <div style = {style}>
-                <h3 onClick = {toggleOpen}>{title}</h3>
+                <h3 onClick = {toggleOpen}>{title} | <a href="#" onClick = {this.handleDelete}>delete this article</a></h3>
                 <a href="#" onClick={this.handleClick}>select this article</a>
                 <Body text = {text} isOpen = {isOpen} comments = {comments}/>
             </div>
         )
+    }
+
+    handleDelete = (ev) => {
+        ev.preventDefault()
+        deleteArticle(this.props.article.id)
     }
 
     handleClick = (ev) => {
