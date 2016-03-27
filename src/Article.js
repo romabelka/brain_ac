@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Body from './Body'
 import toggleOpen from './HOC/toggleOpen'
-import CommentList from './CommentList'
 
 class Article extends Component {
 
@@ -19,8 +18,7 @@ class Article extends Component {
             <div style = {style}>
                 <h3 onClick = {toggleOpen}>{title}</h3>
                 <a href="#" onClick={this.handleClick}>select this article</a>
-                <Body text = {text} isOpen = {isOpen}/>
-                <CommentList comments = {comments}/>
+                <Body text = {text} isOpen = {isOpen} comments = {comments}/>
             </div>
         )
     }
