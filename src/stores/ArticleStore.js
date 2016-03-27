@@ -1,11 +1,10 @@
 import AppDispatcher from '../dispatcher'
-import { EventEmitter } from 'events'
 import { DELETE_ARTICLE } from '../AC/constants'
+import SimpleStore from './SimpleStore'
 
-class ArticleStore extends EventEmitter {
-    constructor(initialState) {
-        super()
-        this.__items = initialState
+class ArticleStore extends SimpleStore {
+    constructor(...args) {
+        super(...args)
 
         AppDispatcher.register((action) => {
             const { type, data } = action
@@ -17,34 +16,6 @@ class ArticleStore extends EventEmitter {
                     break;
             }
         })
-    }
-
-    emitChange() {
-        this.emit('CHANGE_EVENT')
-    }
-
-    addChangeListener(callback) {
-        this.on('CHANGE_EVENT', callback)
-    }
-
-    removeChangeListener(callback) {
-        this.removeListener('CHANGE_EVENT', callback)
-    }
-
-    getAll() {
-        return this.__items.slice()
-    }
-
-    getById() {
-
-    }
-
-    __add(item) {
-        this.__items.push(item)
-    }
-
-    __delete(id) {
-        this.__items = this.__items.filter(item => item.id != id)
     }
 }
 
