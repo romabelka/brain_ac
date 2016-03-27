@@ -1,7 +1,7 @@
 import React, { Component as ReactComponent } from 'react'
 
 export default (CustomComponent) => {
-    return class extends ReactComponent {
+    return class ToggleOpenDecorator extends ReactComponent {
 
         state = {
             isOpen: false
