@@ -7,9 +7,9 @@ class ArticleStore extends SimpleStore {
     constructor(...args) {
         super(...args)
 
-        AppDispatcher.register((action) => {
+        this.dispatchToken = AppDispatcher.register((action) => {
             const { type, data, response, error } = action
-
+            //AppDispatcher.waitFor([someStore.dispatchToken])
             switch (type) {
                 case DELETE_ARTICLE:
                     this.__delete(data.id)
