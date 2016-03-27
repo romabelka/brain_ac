@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline",
+    "start": "concurrently \"npm run dev\" \"npm run api\"",
+    "dev": "webpack-dev-server --hot --inline",
+    "api": "node ./simple_api/server.js",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +27,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-stage-0": "^6.5.0",
+    "concurrently": "^2.0.0",
     "events": "^1.1.0",
     "flux": "^2.1.1",
     "webpack": "^1.12.14",
