@@ -4,6 +4,14 @@ import toggleOpen from './HOC/toggleOpen'
 import CommentList from './CommentList'
 
 class Article extends Component {
+
+    static propTypes = {
+        article: PropTypes.object.isRequired,
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func,
+        isSelected: PropTypes.bool
+    }
+
     render() {
         const {article : { title, text, comments }, isOpen, toggleOpen, isSelected} = this.props
         const style = isSelected ? {color: 'red'} : null
