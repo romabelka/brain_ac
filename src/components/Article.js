@@ -13,7 +13,8 @@ class Article extends Component {
     }
 
     render() {
-        const {article : { title, text, comments }, isOpen, toggleOpen, isSelected} = this.props
+        const {article : { title, text }, isOpen, toggleOpen, isSelected} = this.props
+        const comments = this.props.article.getRelation('comments')
         const style = isSelected ? {color: 'red'} : null
         return (
             <div style = {style}>
