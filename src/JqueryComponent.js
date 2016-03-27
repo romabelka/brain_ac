@@ -10,7 +10,7 @@ class JqueryComponent extends Component {
     }
 
     componentDidMount() {
-        console.log('---', 'use some plugin', this.refs.jContainer);
+        //console.log('---', 'use some plugin', this.refs.jContainer);
     }
 }
 

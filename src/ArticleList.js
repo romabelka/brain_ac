@@ -50,7 +50,7 @@ class ArticleList extends Component {
     }
 
     componentDidMount() {
-        console.log('---', 123, findDOMNode(this.refs.customComponent));
+        //console.log('---', 123, findDOMNode(this.refs.customComponent));
     }
 }
 
