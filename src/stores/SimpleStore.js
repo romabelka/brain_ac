@@ -3,8 +3,9 @@ import { EventEmitter } from 'events'
 import { DELETE_ARTICLE } from '../AC/constants'
 
 class SimpleStore extends EventEmitter {
-    constructor(initialState) {
+    constructor(stores, initialState) {
         super()
+        this.__stores = stores
         this.__items = {}
         if (initialState) initialState.forEach(this.__add)
     }
