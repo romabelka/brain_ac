@@ -1,19 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import ArticleList from './ArticleList'
 import { articleStore } from '../stores'
-import { loadAllArticles } from '../AC/articles'
 
 class App extends Component {
     constructor() {
         super()
         this.state = {
-            articles: articleStore.getAll()
+            articles: articleStore.getOrLoadAll()
         }
     }
 
     componentDidMount() {
         articleStore.addChangeListener(this.articlesChanged)
-        loadAllArticles()
     }
 
     componentWillUnmount() {
@@ -22,7 +20,7 @@ class App extends Component {
 
     articlesChanged = () => {
         this.setState({
-            articles: articleStore.getAll()
+            articles: articleStore.getOrLoadAll()
         })
     }
 

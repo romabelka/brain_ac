@@ -1,6 +1,7 @@
 import AppDispatcher from '../dispatcher'
 import { DELETE_ARTICLE, LOAD_ALL_ARTICLES, SUCCESS, START, FAIL } from '../AC/constants'
 import SimpleStore from './SimpleStore'
+import { loadAllArticles } from '../AC/articles'
 
 class ArticleStore extends SimpleStore {
     constructor(...args) {
@@ -20,6 +21,7 @@ class ArticleStore extends SimpleStore {
 
                 case LOAD_ALL_ARTICLES + SUCCESS:
                     this.loading = false
+                    this.loaded = true
                     response.forEach(this.__add)
                     break;
 
@@ -28,6 +30,11 @@ class ArticleStore extends SimpleStore {
 
             this.emitChange()
         })
+    }
+
+    getOrLoadAll() {
+        if (!this.loaded && !this.loading) loadAllArticles()
+        return this.getAll()
     }
 }
 
