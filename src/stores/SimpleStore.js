@@ -5,7 +5,8 @@ import { DELETE_ARTICLE } from '../AC/constants'
 class SimpleStore extends EventEmitter {
     constructor(initialState) {
         super()
-        this.__items = initialState
+        this.__items = {}
+        if (initialState) initialState.forEach(this.__add)
     }
 
     emitChange() {
@@ -21,19 +22,19 @@ class SimpleStore extends EventEmitter {
     }
 
     getAll() {
-        return this.__items.slice()
+        return Object.keys(this.__items).map(id => this.__items[id])
     }
 
     getById(id) {
-        return this.__items.filter(item => item.id == id)[0]
+        return this.__items[id]
     }
 
-    __add(item) {
-        this.__items.push(item)
+    __add = (item) => {
+        this.__items[item.id] = item
     }
 
     __delete(id) {
-        this.__items = this.__items.filter(item => item.id != id)
+        delete this.__items[id]
     }
 }
 
