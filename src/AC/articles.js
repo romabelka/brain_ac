@@ -1,6 +1,6 @@
 import AppDispatcher from '../dispatcher'
-import { DELETE_ARTICLE, LOAD_ALL_ARTICLES } from './constants'
-import { loadAll } from './api/article'
+import { DELETE_ARTICLE, LOAD_ALL_ARTICLES, LOAD_ARTICLE } from './constants'
+import { loadAll, loadById } from './api/article'
 import { asyncAC } from './utils'
 
 export function deleteArticle(id) {
@@ -11,3 +11,4 @@ export function deleteArticle(id) {
 }
 
 export const loadAllArticles = asyncAC(loadAll, LOAD_ALL_ARTICLES)
+export const loadArticleById = asyncAC(loadById, LOAD_ARTICLE)

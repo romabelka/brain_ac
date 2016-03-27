@@ -2,9 +2,11 @@ import React, { PropTypes } from 'react'
 import CommentList from './CommentList'
 
 function Body(props) {
-    const { text, isOpen, comments } = props
+    const { article, isOpen } = props
+    const comments = article.getRelation('comments')
+    const loader = article.loading ? <h3>Loading article...</h3> : null
     return isOpen ? <section>
-        {text}
+        {loader || article.text}
         <CommentList comments = {comments}/>
     </section> : <noscript />
 }

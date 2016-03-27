@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Body from './Body'
 import toggleOpen from './../HOC/toggleOpen'
-import { deleteArticle } from '../AC/articles'
+import { deleteArticle, loadArticleById } from '../AC/articles'
 
 class Article extends Component {
 
@@ -12,15 +12,20 @@ class Article extends Component {
         isSelected: PropTypes.bool
     }
 
+    componentWillReceiveProps(nextProps) {
+        const { article } = nextProps
+        if (article.loaded || article.loading) return
+        if (nextProps.isOpen && !this.props.isOpen) loadArticleById({id: article.id})
+    }
+
     render() {
-        const {article : { title, text }, isOpen, toggleOpen, isSelected} = this.props
-        const comments = this.props.article.getRelation('comments')
+        const {article, isOpen, toggleOpen, isSelected} = this.props
         const style = isSelected ? {color: 'red'} : null
         return (
             <div style = {style}>
-                <h3 onClick = {toggleOpen}>{title} | <a href="#" onClick = {this.handleDelete}>delete this article</a></h3>
+                <h3 onClick = {toggleOpen}>{article.title} | <a href="#" onClick = {this.handleDelete}>delete this article</a></h3>
                 <a href="#" onClick={this.handleClick}>select this article</a>
-                <Body text = {text} isOpen = {isOpen} comments = {comments}/>
+                <Body isOpen = {isOpen}article = {article}/>
             </div>
         )
     }
