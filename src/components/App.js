@@ -10,6 +10,20 @@ class App extends Component {
         }
     }
 
+    componentDidMount() {
+        articleStore.addChangeListener(this.articlesChanged)
+    }
+
+    componentWillUnmount() {
+        articleStore.removeAllListeners(this.articlesChanged)
+    }
+
+    articlesChanged = () => {
+        this.setState({
+            articles: articleStore.getAll()
+        })
+    }
+
     render() {
         return (
             <ArticleList articles = {this.state.articles}/>

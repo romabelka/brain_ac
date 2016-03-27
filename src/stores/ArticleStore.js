@@ -1,7 +1,9 @@
 import AppDispatcher from '../dispatcher'
+import { EventEmitter } from 'events'
 
-class ArticleStore {
+class ArticleStore extends EventEmitter {
     constructor(initialState) {
+        super()
         this.__items = initialState
 
         AppDispatcher.register((action) => {
@@ -10,9 +12,22 @@ class ArticleStore {
             switch (type) {
                 case 'DELETE_ARTICLE':
                     this.__delete(data.id)
+                    this.emitChange()
                     break;
             }
         })
+    }
+
+    emitChange() {
+        this.emit('CHANGE_EVENT')
+    }
+
+    addChangeListener(callback) {
+        this.on('CHANGE_EVENT', callback)
+    }
+
+    removeChangeListener(callback) {
+        this.removeListener('CHANGE_EVENT', callback)
     }
 
     getAll() {
