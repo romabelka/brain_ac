@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Article from './Article'
 import JqueryComponent from './JqueryComponent'
 import { findDOMNode } from 'react-dom'
+import oneOpen from '../HOC/oneOpen'
 
 class ArticleList extends Component {
 
@@ -31,8 +32,8 @@ class ArticleList extends Component {
         const articleComponents = this.props.articles.map((article, index) =>
             <li key={index}>
                 <Article article = {article}
-                         isOpen = {this.state.openedArticle === article.id}
-                         open = {this.openArticle(article.id)}
+                         isOpen = {this.props.isOpen(article.id)}
+                         open = {this.props.open(article.id)}
                          onClick = {this.selectArticle(article.id)}
                          isSelected={this.state.selected[article.id]} />
             </li>
@@ -71,4 +72,4 @@ ArticleList.propTypes = {
     })
 }
 
-export default ArticleList
+export default oneOpen(ArticleList)
