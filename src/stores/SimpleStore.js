@@ -28,7 +28,7 @@ class SimpleStore extends EventEmitter {
     }
 
     getById = (id) => {
-        return this.__items[id]
+        return this.__items[id.toString()]
     }
 
     getStores() {

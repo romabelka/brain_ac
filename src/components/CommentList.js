@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import toggleOpen from './../HOC/toggleOpen'
+import { loadCommentsForArticle } from '../AC/comments'
 
 class CommentList extends Component {
     static propTypes = {
@@ -7,9 +8,9 @@ class CommentList extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        const { comments } = nextProps
-//        if (comments.loaded || comments.loading) return
-//        if (nextProps.isOpen && !this.props.isOpen) loadArticleById({id: article.id})
+        const { article } = nextProps
+        if (article.loadedComments || article.loadingComments) return
+        if (nextProps.isOpen && !this.props.isOpen) loadCommentsForArticle({articleId: article.id})
     }
 
 
@@ -39,6 +40,7 @@ class CommentList extends Component {
         if (!isOpen) return null
         if (article.loadingComments) return <h3>Loading comments...</h3>
         if (!article.loadedComments) return null
+        debugger;
 
         const commentComponents = article.getRelation('comments')
             .map((comment) => <li key={comment.id}>{comment.text}</li>)
