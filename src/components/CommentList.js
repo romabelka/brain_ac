@@ -3,12 +3,17 @@ import toggleOpen from './../HOC/toggleOpen'
 
 class CommentList extends Component {
     static propTypes = {
-        comments: PropTypes.array
+        article: PropTypes.object.isRequired
     };
 
+    componentWillReceiveProps(nextProps) {
+        const { comments } = nextProps
+//        if (comments.loaded || comments.loading) return
+//        if (nextProps.isOpen && !this.props.isOpen) loadArticleById({id: article.id})
+    }
+
+
     render() {
-        const { comments } = this.props
-        if (!comments) return null
         return (
             <div>
                 {this.getActionLink()}
@@ -30,9 +35,14 @@ class CommentList extends Component {
     }
 
     getComments() {
-        const { isOpen, comments } = this.props
+        const { isOpen, article } = this.props
         if (!isOpen) return null
-        const commentComponents = comments.map((comment) => <li key={comment.id}>{comment.text}</li>)
+        if (article.loadingComments) return <h3>Loading comments...</h3>
+        if (!article.loadedComments) return null
+
+        const commentComponents = article.getRelation('comments')
+            .map((comment) => <li key={comment.id}>{comment.text}</li>)
+
         return (
             <ul>
                 {commentComponents}

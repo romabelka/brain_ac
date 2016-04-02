@@ -6,7 +6,7 @@ const stores = {}
 
 Object.assign(stores, {
     articles: new ArticleStore(stores),
-    comments: new SimpleStore(stores, comments)
+    comments: new SimpleStore(stores)
 })
 
 //for debug only, can remove any time

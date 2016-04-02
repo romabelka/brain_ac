@@ -3,11 +3,10 @@ import CommentList from './CommentList'
 
 function Body(props) {
     const { article, isOpen } = props
-    const comments = article.getRelation('comments')
     const loader = article.loading ? <h3>Loading article...</h3> : null
     return isOpen ? <section>
         {loader || article.text}
-        <CommentList comments = {comments}/>
+        <CommentList article = {article}/>
     </section> : <noscript />
 }
 
