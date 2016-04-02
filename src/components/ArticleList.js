@@ -12,7 +12,8 @@ class ArticleList extends Component {
 */
 
     state = {
-        selected: {}
+        selected: {},
+        openedArticle: null
     }
 
 /*
@@ -30,6 +31,8 @@ class ArticleList extends Component {
         const articleComponents = this.props.articles.map((article, index) =>
             <li key={index}>
                 <Article article = {article}
+                         isOpen = {this.state.openedArticle === article.id}
+                         open = {this.openArticle(article.id)}
                          onClick = {this.selectArticle(article.id)}
                          isSelected={this.state.selected[article.id]} />
             </li>
@@ -40,6 +43,13 @@ class ArticleList extends Component {
                 <JqueryComponent ref = "customComponent" />
             </div>
         )
+    }
+
+    openArticle = id => ev => {
+        if (ev) ev.preventDefault()
+        this.setState({
+            openedArticle: id
+        })
     }
 
     selectArticle = (id) => (ev) => {

@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import Body from './Body'
-import toggleOpen from './../HOC/toggleOpen'
 import { deleteArticle, loadArticleById } from '../AC/articles'
 
 class Article extends Component {
@@ -8,7 +7,7 @@ class Article extends Component {
     static propTypes = {
         article: PropTypes.object.isRequired,
         isOpen: PropTypes.bool,
-        toggleOpen: PropTypes.func,
+        open: PropTypes.func,
         isSelected: PropTypes.bool
     }
 
@@ -19,11 +18,11 @@ class Article extends Component {
     }
 
     render() {
-        const {article, isOpen, toggleOpen, isSelected} = this.props
+        const {article, isOpen, open, isSelected} = this.props
         const style = isSelected ? {color: 'red'} : null
         return (
             <div style = {style}>
-                <h3 onClick = {toggleOpen}>{article.title} | <a href="#" onClick = {this.handleDelete}>delete this article</a></h3>
+                <h3 onClick = {open}>{article.title} | <a href="#" onClick = {this.handleDelete}>delete this article</a></h3>
                 <a href="#" onClick={this.handleClick}>select this article</a>
                 <Body isOpen = {isOpen}article = {article}/>
             </div>
@@ -41,4 +40,4 @@ class Article extends Component {
     }
 }
 
-export default toggleOpen(Article)
+export default Article
