@@ -8,7 +8,8 @@ class CommentList extends Component {
     };
 
     static contextTypes = {
-        router: PropTypes.object
+        router: PropTypes.object,
+        user: PropTypes.string
     }
 
     state = {
@@ -72,7 +73,7 @@ class CommentList extends Component {
     handleAddComment = (ev) => {
         addComment({
             text: this.state.newComment,
-            user: undefined
+            user: this.context.user
         }, this.props.article.id)
 
         this.setState({

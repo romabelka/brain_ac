@@ -24,6 +24,14 @@ class App extends Component {
         }
     }
 
+    getChildContext() {
+        return this.state
+    }
+
+    static childContextTypes = {
+        user: PropTypes.string
+    }
+
 
     render() {
         return (
