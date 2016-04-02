@@ -8,7 +8,7 @@ import NotFound from './containers/NotFound'
 
 export default (
     <Router history = {browserHistory}>
-        <Redirect from = "/" to="/articles/new" />
+        <Redirect from = "/" to="/articles" />
         <Route path="/" component = {App}>
             <Route path = "articles" component = {ArticleIndex}>
                 {/*<IndexRedirect to = "new"/>*/}

@@ -1,5 +1,5 @@
 import AppDispatcher from '../dispatcher'
-import { DELETE_ARTICLE, LOAD_ALL_ARTICLES, LOAD_ARTICLE, LOAD_COMMENTS_FOR_ARTICLE, SUCCESS, START, FAIL } from '../AC/constants'
+import { ADD_COMMENT, DELETE_ARTICLE, LOAD_ALL_ARTICLES, LOAD_ARTICLE, LOAD_COMMENTS_FOR_ARTICLE, SUCCESS, START, FAIL } from '../AC/constants'
 import SimpleStore from './SimpleStore'
 import { loadAllArticles, loadArticleById } from '../AC/articles'
 
@@ -43,6 +43,11 @@ class ArticleStore extends SimpleStore {
                     this.getById(data.articleId).loadingComments = false
                     this.getById(data.articleId).loadedComments = true
                     break
+
+                case ADD_COMMENT:
+                    AppDispatcher.waitFor([this.getStores().comments.dispatchToken])
+                    this.getById(data.articleId).comments.push(data.comment.id)
+                    break;
 
                 default: return
             }

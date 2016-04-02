@@ -1,5 +1,5 @@
 import AppDispatcher from '../dispatcher'
-import { LOAD_COMMENTS_FOR_ARTICLE, SUCCESS, START, FAIL } from '../AC/constants'
+import { LOAD_COMMENTS_FOR_ARTICLE, ADD_COMMENT, SUCCESS, START, FAIL } from '../AC/constants'
 import SimpleStore from './SimpleStore'
 
 class CommentStore extends SimpleStore {
@@ -12,6 +12,10 @@ class CommentStore extends SimpleStore {
             switch (type) {
                 case LOAD_COMMENTS_FOR_ARTICLE + SUCCESS:
                     response.forEach(this.__add)
+                    break;
+
+                case ADD_COMMENT:
+                    this.__add(data.comment)
                     break;
 
                 default: return

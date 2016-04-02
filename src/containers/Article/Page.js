@@ -39,9 +39,14 @@ class ArticlePage extends Component {
         return (
             <div>
                 <h3>{article.title} | <a href="#" onClick = {this.handleDelete}>delete this article</a></h3>
+                <div onClick = {this.handleRedirect} style = {{color: 'red'}}>Create new article</div>
                 <Body isOpen = {true} article = {article}/>
             </div>
         )
+    }
+
+    handleRedirect = () => {
+        console.log('---', this.props.history.push('/articles/new'));
     }
 
     handleDelete = (ev) => {
