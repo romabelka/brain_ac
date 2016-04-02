@@ -34,7 +34,6 @@ class ArticleList extends Component {
                          isSelected={this.state.selected[article.id]} />
             </li>
         )
-        console.log('---', this.state);
         return (
             <div>
                 <ul>{articleComponents}</ul>
