@@ -6,10 +6,7 @@ import Body from '../../components/Body'
 class ArticlePage extends Component {
     constructor(props) {
         super()
-        this.state = {
-            article: articleStore.getById(props.params.id),
-            loading: articleStore.loading
-        }
+        this.state = this.getState(props)
     }
 
     componentDidMount() {
@@ -20,15 +17,23 @@ class ArticlePage extends Component {
         articleStore.removeAllListeners(this.articlesChanged)
     }
 
-    articlesChanged = () => {
-        this.setState({
-            article: articleStore.getById(this.props.params.id),
-            loading: articleStore.loading
-        })
+    componentWillReceiveProps(nextProps) {
+        this.setState(this.getState(nextProps))
     }
+
+    getState = (props) => {
+        props = props || this.props
+        return {
+            article: articleStore.getById(props.params.id),
+            loading: articleStore.loading
+        }
+    }
+
+    articlesChanged = () => this.setState(this.getState())
 
     render() {
         const { article } = this.state
+        //const article = articleStore.getById(this.props.params.id) //-baaaad choice, render must be a pure func of props and state
         return (
             <div>
                 <h3>{article.title} | <a href="#" onClick = {this.handleDelete}>delete this article</a></h3>
