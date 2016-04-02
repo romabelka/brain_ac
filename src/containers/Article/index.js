@@ -28,9 +28,10 @@ class ArticleIndex extends Component {
 
     render() {
         const { loading, articles } = this.state
-        if (loading) return <h1>Loading...</h1>
+        const loader = loading ? <h1>Loading...</h1> : null
         return (
             <div>
+                {loader}
                 <ArticlesMenu articles = {articles}/>
                 {this.props.children}
             </div>

@@ -24,7 +24,7 @@ class ArticlePage extends Component {
     getState = (props) => {
         props = props || this.props
         return {
-            article: articleStore.getById(props.params.id),
+            article: articleStore.getOrLoadById(props.params.id),
             loading: articleStore.loading
         }
     }
@@ -33,6 +33,8 @@ class ArticlePage extends Component {
 
     render() {
         const { article } = this.state
+        if (!article) return null
+        if (article.loading) return <h3>Loading article</h3>
         //const article = articleStore.getById(this.props.params.id) //-baaaad choice, render must be a pure func of props and state
         return (
             <div>

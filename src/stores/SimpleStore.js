@@ -39,6 +39,12 @@ class SimpleStore extends EventEmitter {
         this.__items[item.id] = new DataModel(item, this)
     }
 
+    __update = (item) => {
+        const storeItem = this.getById(item.id)
+        if (!storeItem) return this.__add(item)
+        Object.assign(storeItem, item)
+    }
+
     __delete(id) {
         delete this.__items[id]
     }
