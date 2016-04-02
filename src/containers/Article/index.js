@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import ArticleList from './../../components/ArticleList'
+import ArticlesMenu from './../../components/ArticlesMenu'
 import { articleStore } from '../../stores'
 
 class ArticleIndex extends Component {
@@ -31,7 +31,7 @@ class ArticleIndex extends Component {
         if (loading) return <h1>Loading...</h1>
         return (
             <div>
-                <ArticleList articles = {articles}/>
+                <ArticlesMenu articles = {articles}/>
                 {this.props.children}
             </div>
         )
