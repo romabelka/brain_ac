@@ -40,7 +40,6 @@ class CommentList extends Component {
         if (!isOpen) return null
         if (article.loadingComments) return <h3>Loading comments...</h3>
         if (!article.loadedComments) return null
-        debugger;
 
         const commentComponents = article.getRelation('comments')
             .map((comment) => <li key={comment.id}>{comment.text}</li>)
