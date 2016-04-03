@@ -7,6 +7,11 @@ class CommentList extends Component {
         article: PropTypes.object.isRequired
     };
 
+    shouldComponentUpdate(nextProps, nextState) {
+//        return this.props.article.comments.length != nextProps.article.comments.length
+        return true
+    }
+
     static contextTypes = {
         router: PropTypes.object,
         user: PropTypes.string
@@ -24,6 +29,7 @@ class CommentList extends Component {
 
 
     render() {
+        console.log('---', 123);
 //        console.log('---', this.context);
         return (
             <div>
