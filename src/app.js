@@ -1,14 +1,8 @@
 import React from 'react'
 import {render} from 'react-dom'
-//import Router from './Router'
-import store from './store'
-import Root from './containers/Root'
+import router from './router'
 
-render(<Root store = {store} />, document.getElementById('container'))
-
-function wrapp (ac) {
-    return store.dispatch(ac())
-}
+render(router, document.getElementById('container'))
 
 /*
 function dispatchIncrement() {
