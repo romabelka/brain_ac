@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { increment } from '../AC/counter'
-import { deleteArticle } from '../AC/articles'
+import { deleteArticle, loadArticles } from '../AC/articles'
 import Counter from '../components/Counter'
 import ArticleList from '../components/ArticleList'
 
@@ -25,5 +25,5 @@ export default connect((state) => {
     const { count, articles } = state
     return { count, articles }
 }, {
-    increment, deleteArticle
+    increment, deleteArticle, loadArticles
 })(App)

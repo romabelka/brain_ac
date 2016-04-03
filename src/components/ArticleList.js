@@ -6,11 +6,16 @@ class ArticleList extends Component {
     };
 
     render() {
+        if (this.props.articles.loading) return <h1>Loading...</h1>
         return (
             <ul>
                 {this.getArticles()}
             </ul>
         )
+    }
+
+    componentDidMount() {
+        this.props.loadArticles()
     }
 
     getArticles() {
