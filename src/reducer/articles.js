@@ -11,7 +11,8 @@ export default (articles = defaultArticles, action) => {
     const { type, data } = action
 
     switch (type) {
-        case DELETE_ARTICLE: return Object.assign({}, articles, {entities: articles.entities.filter(id => id != data.id)})
+        case DELETE_ARTICLE:
+            return Object.assign({}, articles, {entities: articles.entities.filter(article => article.id != data.id)})
     }
 
     return articles

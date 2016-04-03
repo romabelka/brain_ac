@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
-import Counter from './Counter'
+import App from './App'
 import DevTools from './DevTools'
 
 class Root extends Component {
@@ -12,7 +12,7 @@ class Root extends Component {
         return (
             <Provider store = {this.props.store}>
                 <div>
-                    <Counter />
+                    <App />
                     <DevTools />
                 </div>
             </Provider>
