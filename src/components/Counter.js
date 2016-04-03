@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 
-class NewArticle extends Component {
+class Counter extends Component {
     static propTypes = {
-
+        count: PropTypes.number
     };
 
     render() {
         return (
             <div>
-                <h3>New Article</h3>
+                <h1>{this.props.count}</h1>
             </div>
         )
     }
 }
 
-export default NewArticle
+export default Counter
