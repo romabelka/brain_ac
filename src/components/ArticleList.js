@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import CommentList from './CommentList'
 
 class ArticleList extends Component {
     static propTypes = {
@@ -23,6 +24,7 @@ class ArticleList extends Component {
 
         return entities.map(article => <li key = {article.id}>
             {article.title} | <a href = "#" onClick ={this.handleDelete(article.id)}>delete article</a>
+            <CommentList article = {article}/>
         </li>)
     }
 
