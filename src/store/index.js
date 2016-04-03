@@ -11,4 +11,10 @@ const enhancer = compose(
 const store = createStore(reducer, {}, enhancer)
 window.store = store
 
+if (module.hot) {
+    module.hot.accept('../reducer', () =>
+        store.replaceReducer(require('../reducer').default)
+    );
+}
+
 export default store
