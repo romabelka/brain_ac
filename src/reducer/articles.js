@@ -1,4 +1,4 @@
-import { DELETE_ARTICLE, LOAD_ARTICLES, SUCCESS, START, FAIL } from '../constants'
+import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ARTICLES, SUCCESS, START, FAIL } from '../constants'
 import { articles } from '../fixtures'
 
 const defaultArticles = {
@@ -8,7 +8,7 @@ const defaultArticles = {
 }
 
 export default (articles = defaultArticles, action) => {
-    const { type, data, response } = action
+    const { type, data, response, randomId } = action
 
     switch (type) {
         case DELETE_ARTICLE:
@@ -19,7 +19,16 @@ export default (articles = defaultArticles, action) => {
 
         case LOAD_ARTICLES + SUCCESS:
             return {...articles, loading: false, loaded: true, entities: response}
+
+        case ADD_COMMENT:
+            return {...articles, entities: addComment(articles.entities, data.articleId, randomId)}
     }
 
     return articles
+}
+
+function addComment(entities, articleId, commentId) {
+    return entities.map(article => {
+        return article.id == articleId ? {...article, comments: article.comments.concat(commentId)} : article
+    })
 }

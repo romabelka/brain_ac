@@ -20,11 +20,11 @@ class ArticleList extends Component {
     }
 
     getArticles() {
-        const { articles: { entities } } = this.props
+        const { articles: { entities }, addComment } = this.props
 
         return entities.map(article => <li key = {article.id}>
             {article.title} | <a href = "#" onClick ={this.handleDelete(article.id)}>delete article</a>
-            <CommentList article = {article}/>
+            <CommentList {...{article, addComment}}/>
         </li>)
     }
 

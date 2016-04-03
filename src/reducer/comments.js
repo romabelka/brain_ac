@@ -1,4 +1,4 @@
-import {  } from '../constants'
+import { ADD_COMMENT } from '../constants'
 import { comments } from '../fixtures'
 
 const defaultComments = {
@@ -9,10 +9,11 @@ const defaultComments = {
 
 
 export default (comments = defaultComments, action) => {
-    const { type, data } = action
+    const { type, data, randomId } = action
 
     switch (type) {
-
+        case ADD_COMMENT:
+            return {...comments, entities: comments.entities.concat({text: data.text, id: randomId})}
     }
 
     return comments

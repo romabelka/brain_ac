@@ -4,10 +4,11 @@ import reducer from '../reducer'
 import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
 import api from '../middlewares/api'
+import randomId from '../middlewares/randomId'
 import DevTools from '../containers/DevTools'
 
 const enhancer = compose(
-    applyMiddleware(thunk, api, createLogger()),
+    applyMiddleware(thunk, api, randomId, createLogger()),
     DevTools.instrument()
 )
 

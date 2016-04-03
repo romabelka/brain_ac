@@ -7,6 +7,10 @@ class CommentList extends Component {
         addComment: PropTypes.func
     };
 
+    state = {
+        text: ''
+    };
+
     render() {
         const { article, addComment } = this.props
         const comments = getRelation(article, 'comments').map(comment =>
@@ -15,8 +19,24 @@ class CommentList extends Component {
         return (
             <ul>
                 {comments}
+                <input type="text" value={this.state.text} onChange = {this.handleChange} onBlur={this.submitComment}/>
             </ul>
         )
+    }
+
+    handleChange =(ev) => {
+        this.setState({
+            text: ev.target.value
+        })
+    }
+
+    submitComment = () => {
+        const { addComment, article } = this.props
+        addComment(this.state.text, article.id)
+
+        this.setState({
+            text: ''
+        })
     }
 }
 
